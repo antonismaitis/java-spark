@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>sparkcure</groupId>
+    <artifactId>sparkcure</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--Logging -->
+        <version.slf4j>1.7.21</version.slf4j>
+        <version.log4j>1.2.17</version.log4j>
+
+        <version.jee.api>7.0</version.jee.api>
+        <version.ejb>3.2</version.ejb>
+        <java.version>1.8</java.version>
+
+        <!-- Maven Plugins -->
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.war.plugin.version>2.3</maven.war.plugin.version>
+        <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
+
+        <version.compiler.plugin>3.8.0</version.compiler.plugin>
+        <version.ear.plugin>2.10</version.ear.plugin>
+        <version.ejb.plugin>3.0.0</version.ejb.plugin>
+        <version.surefire.plugin>2.16</version.surefire.plugin>
+        <version.war.plugin>2.5</version.war.plugin>
+        <version.cxf.xjc.plugin>3.1.0</version.cxf.xjc.plugin>
+        <version.hibernate5-ddl-maven-plugin>2.0.4</version.hibernate5-ddl-maven-plugin>
+
+        <!-- Hibernate -->
+        <hibernate.core.version>5.2.11.Final</hibernate.core.version>
+        <hibernate.modelgen.version>5.2.11.Final</hibernate.modelgen.version>
+        <hibernate.javax.persistence.version>1.0.0.Final</hibernate.javax.persistence.version>
+        <hibernate.validator.version>6.0.14.Final</hibernate.validator.version>
+        <hibernate.jpa.version>1.0.2.Final</hibernate.jpa.version>
+
+        <!-- Java EE -->
+        <jboss-annotations-api_1.2_spec.version>1.0.1.Final</jboss-annotations-api_1.2_spec.version>
+        <javax.cdi-api.version>2.0</javax.cdi-api.version>
+
+    </properties>
+
+    <dependencies>
+        <!-- Java EE libraries -->
+
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${version.jee.api}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <version>${javax.cdi-api.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jfree/jfreechart -->
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.0.19</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-math -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math</artifactId>
+            <version>2.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.airlift/slice -->
+        <dependency>
+            <groupId>io.airlift</groupId>
+            <artifactId>slice</artifactId>
+            <version>0.36</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.harium/kdtree -->
+        <dependency>
+            <groupId>com.harium</groupId>
+            <artifactId>kdtree</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core -->
+        <dependency>
+            <groupId>com.sparkjava</groupId>
+            <artifactId>spark-core</artifactId>
+            <version>2.5.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.parquet/parquet-avro -->
+        <dependency>
+            <groupId>org.apache.parquet</groupId>
+            <artifactId>parquet-avro</artifactId>
+            <version>1.8.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.googlecode.princeton-java-algorithms/algorithms -->
+        <dependency>
+            <groupId>com.googlecode.princeton-java-algorithms</groupId>
+            <artifactId>algorithms</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_2.11</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-mllib -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-mllib_2.11</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <finalName>${project.artifactId}</finalName>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <configuration>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <archive>
+                                <manifest>
+                                    <mainClass>StartProcessCure</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>make-assembly</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>
